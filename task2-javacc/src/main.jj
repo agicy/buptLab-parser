@@ -1,0 +1,55 @@
+options {
+    STATIC = false;
+}
+
+PARSER_BEGIN(Calc)
+import java.io.*;
+import java.util.Scanner;
+
+class Calc {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {
+            String input = scanner.nextLine();
+            try {
+                System.out.println(evaluate(input));
+            } catch (ParseException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static long evaluate(String src) throws ParseException {
+        Reader reader = new StringReader(src);
+        return new Calc(reader).expr();
+    }
+}
+
+PARSER_END(Calc)
+
+SKIP: { <[" ", "\t", "\r", "\n"]> }
+
+TOKEN: { <INTEGER: (["0"-"9"])+> }
+TOKEN: { <PLUS: "+"> | <MINUS: "-"> | <MUL: "*"> | <DIV: "/"> | <POW: "^"> }
+TOKEN: { <LPAREN: "("> | <RPAREN: ")"> }
+
+long expr(): { long value, next; } {
+    value = term() ( <PLUS> next = term() { value += next; } | <MINUS> next = term() { value -= next; } )* { return value; }
+}
+
+long term(): { long value, next; } {
+    value = factor() ( <MUL> next = factor() { value *= next; } | <DIV> next = factor() { value /= next; } )* { return value; }
+}
+
+long factor(): { long value, next; } {
+    value = number() (<POW> next = factor() { return (long) Math.pow(value, next); } )? { return value; }
+    | <LPAREN> value = expr() <RPAREN> { return value; }
+}
+
+long number(): { Token value; } {
+    value = <INTEGER>
+    { return Long.parseLong(value.image); }
+}
