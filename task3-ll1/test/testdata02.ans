@@ -1,0 +1,17 @@
+$E	n-n*n$	1
+$AT	n-n*n$	5
+$ABF	n-n*n$	10
+$ABn	n-n*n$	match
+$AB	-n*n$	8
+$A	-n*n$	3
+$AT-	-n*n$	match
+$AT	n*n$	5
+$ABF	n*n$	10
+$ABn	n*n$	match
+$AB	*n$	6
+$ABF*	*n$	match
+$ABF	n$	10
+$ABn	n$	match
+$AB	$	8
+$A	$	4
+$	$	accept

@@ -1,0 +1,13 @@
+$E	n+n$	1
+$AT	n+n$	5
+$ABF	n+n$	10
+$ABn	n+n$	match
+$AB	+n$	8
+$A	+n$	2
+$AT+	+n$	match
+$AT	n$	5
+$ABF	n$	10
+$ABn	n$	match
+$AB	$	8
+$A	$	4
+$	$	accept

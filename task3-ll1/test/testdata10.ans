@@ -1,0 +1,16 @@
+$E	n*(n+$	1
+$AT	n*(n+$	5
+$ABF	n*(n+$	10
+$ABn	n*(n+$	match
+$AB	*(n+$	6
+$ABF*	*(n+$	match
+$ABF	(n+$	9
+$AB)E(	(n+$	match
+$AB)E	n+$	1
+$AB)AT	n+$	5
+$AB)ABF	n+$	10
+$AB)ABn	n+$	match
+$AB)AB	+$	8
+$AB)A	+$	2
+$AB)AT+	+$	match
+$AB)AT	$	error
